@@ -1,21 +1,27 @@
-import React from 'react';
+import {React,useState,useEffect,useRef} from 'react';
 import InputLocation from '../Components/InputLocation'
-import getRequest from '../Service/Weather';
+import WeatherPanel from '../Components/WeatherPanel';
+import {getRequest,getRequestUsingLatandLong} from '../Service/Weather';
 
 const WeatherApp = ()=>{
-    getLocation();
+    const [weatherObj, setweatherObj] = useState({})
+    const ref = useRef("");
+    useEffect(getLocation, [])
     
     return(
-        <div className="d-flex justify-content-between bg-light mb-3 p-3 align-items-center">
-            <h2>Weather App</h2>
-            <InputLocation clickEvent={handleSubmit}/>
+        <div className="">
+            <div className="d-flex justify-content-between bg-light mb-3 p-3 align-items-center">
+                <h2>Weather App</h2>
+                <InputLocation refId = {ref} clickEvent={handleSubmit}/>
+            </div>
+            <WeatherPanel datObj={weatherObj} />
         </div>
     )
 
     function handleSubmit(e){
-        getRequest("Mumbai")
+        getRequest(ref.current.value)
         .then(x=>{
-            console.log(x);
+            setweatherObj(x);
         })
     }
     function getLocation() {
@@ -27,8 +33,15 @@ const WeatherApp = ()=>{
       }
       
       function showPosition(position) {
-        console.log( "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude);
+          let latitude = position.coords.latitude;
+          let longitude = position.coords.longitude;
+        console.log( "Latitude: " + latitude +
+        "<br>Longitude: " + longitude);
+        if(latitude!==""&&longitude!=="")
+        getRequestUsingLatandLong(latitude,longitude).then(x=>{
+            setweatherObj(x)
+        });
+
       }
 }
 
