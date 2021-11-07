@@ -9,13 +9,13 @@ const WeatherApp = ()=>{
     useEffect(getLocation, [])
     
     return(
-        <div className="">
-            <div className="d-flex justify-content-between bg-light mb-3 p-3 align-items-center">
-                <h2>Weather App</h2>
+        <>
+            <div className="d-flex justify-content-between bg-light p-3 align-items-center">
+                <h3>Weather App</h3>
                 <InputLocation refId = {ref} clickEvent={handleSubmit}/>
             </div>
-            <WeatherPanel datObj={weatherObj} />
-        </div>
+            <WeatherPanel dataObj={weatherObj} />
+        </>
     )
 
     function handleSubmit(e){
@@ -40,6 +40,7 @@ const WeatherApp = ()=>{
         if(latitude!==""&&longitude!=="")
         getRequestUsingLatandLong(latitude,longitude).then(x=>{
             setweatherObj(x)
+            console.log(x)
         });
 
       }

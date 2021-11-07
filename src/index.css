@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+html {
+  height: 100vh;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+  width: 100%;
+}
+#root {
+  height: 100%;
+}
+.panel {
+  height: calc(100% - 80px);
+  background-color: #282c34;
+  color: #fff;
+  position: relative;
+}
+/* .star {
+  position: absolute;
+} */
+.up-top-star-panel {
+  top: 10%;
+}
+.top-star-panel {
+  top: 30%;
+}
+.bottom-star-panel {
+  bottom: 40%;
+}
+.down-bottom-star-panel {
+  bottom: 20%;
+}
+.top-star {
+  left: 20vw;
+}
+.right-star {
+  left: 60vw;
+}
+
+.sunpanel {
+  background-color: #3d7ab8;
+}
+.windpanel {
+  background-color: #61dafb;
+}
+.all-stars {
+  animation: shine 1s ease-in-out infinite alternate;
+  -webkit-animation: shine 1s ease-in-out infinite alternate;
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
